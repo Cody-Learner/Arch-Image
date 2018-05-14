@@ -95,6 +95,25 @@ sudo
 
 pstree NA
 
+-----------------------------------------------------------
+# Enabled systemd services:
+
+autovt@.service                        enabled        
+console-getty.service                  enabled-runtime
+getty@.service                         enabled        
+
+-----------------------------------------------------------
+# Disk storage (ext4):
+
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda7       517G  219G  272G  45% /
+
+-----------------------------------------------------------
+# free:
+
+free NA
+
+
 ```
 
 Some info on lrzip compression. It saved 32MB on a 102MB tar archive compared to using:<br>
