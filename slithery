@@ -1,0 +1,43 @@
+#!/bin/bash
+# slithery 2018-05-13
+
+	clear
+	IPL=$(pacman -Qq)
+	echo -----------------------------------------------------------
+	echo "# Number of installed packages total and list: $(echo "$IPL" | wc -w)" 
+	echo
+	echo "$IPL"|column ; echo
+
+	BGNI=$(comm -23 <((for i in $(pacman -Sqg base); do pactree -us $i;done)|sort -u|cut -d ' ' -f 1) <(pacman -Qq))
+	echo -----------------------------------------------------------
+	echo "# Number of base group packages not installed and list: $(echo "$BGNI" | wc -w)"
+	echo
+	echo "$BGNI"|column ; echo
+	
+	BBGI=$(comm -13 <((for i in $(pacman -Sqg base); do pactree -us $i; done)|sort -u|cut -d ' ' -f 1) <(pacman -Qq))
+	echo -----------------------------------------------------------
+	echo "# Number of non base group packages installed and list: $(echo "$BBGI" | wc -w)"
+	echo
+	echo "$BBGI"|column ; echo
+
+	echo -----------------------------------------------------------
+	echo "# pstree:"
+	echo
+	pstree -U 2>/dev/null || { echo "pstree NA" ; }  ; echo
+
+	echo -----------------------------------------------------------
+	echo "# Enabled systemd services:"
+	echo
+	systemctl list-unit-files | grep enabled | grep service  ; echo
+
+	echo -----------------------------------------------------------
+	echo "# Disk storage (ext4):"
+	echo
+	df -h -t ext4 || { echo "df NA" ; }  ; echo
+
+	echo -----------------------------------------------------------
+	echo "# free:"
+	echo
+	free -m 2>/dev/null || { echo "free NA" ; }  ; echo
+	echo
+

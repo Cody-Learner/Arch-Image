@@ -1,0 +1,8 @@
+$ md5sum *
+b0e2ece932bf42b67f62488154645e34  arch-aurt-2018-05-13.09.18.tar.lrz
+b88b6b2d8d1778d9ee5bade828fff093  aurt-img-bldr
+
+6bd8d6dbb0cb5ab864136c474ab1787e  README.aurt-img-bldr
+35f4ec50d8c57fd02474647db377f433  README.md
+a13b4127451d4b3135dcf706264f3ea8  setup-2018-05-13.09.18-1.tar
+1382d38c32789856d0f0e1273f3d4db5  slithery

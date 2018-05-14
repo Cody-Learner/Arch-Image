@@ -1,0 +1,81 @@
+#!/bin/bash
+#           May 13, 2018
+#           Autobuilder for arch-aurt systemd-nspawn images.
+#           This is here only as a personal backup. 
+#           Not recommended for general usage.
+
+DateTime=$(date '+%Y-%m-%d.%H.%M')
+TimeStamp=$DateTime
+
+# Create container dir.
+mkdir $HOME/Container/arch-aurt-"$TimeStamp"
+
+                                                             ###  removed git expac from list ###
+# Install packages in container
+sudo pacstrap -i -c $HOME/Container/arch-aurt-$TimeStamp \
+\
+glibc gcc-libs glib2 acl archlinux-keyring argon2 attr bash bzip2 ca-certificates ca-certificates-cacert ca-certificates-mozilla \
+ca-certificates-utils coreutils cracklib cryptsetup curl db dbus device-mapper dhcpcd e2fsprogs expat file filesystem findutils \
+gdbm gmp gnupg gnutls gpgme grep hwids iana-etc iptables json-c kbd keyutils kmod krb5 libarchive libassuan libcap libcap-ng libelf \
+libffi libgcrypt libgpg-error libidn libidn2 libksba libldap libmnl libnftnl libnghttp2 libnl libpcap libpsl libsasl libseccomp libsecret \
+libssh2 libsystemd libtasn1 libtirpc libunistring libusb libutil-linux linux-api-headers lz4 nano ncurses nettle npth openssl p11-kit pacman \
+pacman-mirrorlist pam pambase pcre pcre2 perl pinentry popt readline shadow sqlite sudo systemd \
+systemd-sysvcompat tzdata util-linux xz zlib --noconfirm
+
+
+# Set path in container:
+
+
+sudo chmod 777 $HOME/Container/arch-aurt-$TimeStamp/etc/environment
+sudo echo "PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/zfile/bin:/home/aurt/bin" \
+                                                    > $HOME/Container/arch-aurt-$TimeStamp/etc/environment                           
+
+# Copy all [setup contents] into [container /zfile]
+sudo cp -r $HOME/Container/setup/			     		$HOME/Container/arch-aurt-$TimeStamp/zfile/
+
+
+# Move stuff in [container /zfile] to where it's needed
+sudo cp -r $HOME/Container/arch-aurt-$TimeStamp/zfile/bash.bashrc	$HOME/Container/arch-aurt-$TimeStamp/etc/bash.bashrc
+sudo cp -r $HOME/Container/arch-aurt-$TimeStamp/zfile/first-root-run	$HOME/Container/arch-aurt-$TimeStamp/root/first-root-run
+
+
+# Set [container /zfile] ownerships:permissions to aurt:users and make sure scripts stay executable
+sudo chown -R aurt:users                                      		$HOME/Container/arch-aurt-$TimeStamp/zfile/
+sudo chmod +x                                                 		$HOME/Container/arch-aurt-$TimeStamp/zfile/
+
+# Create tar archive change owner:user to $USER
+cd $HOME/Container/arch-aurt-$TimeStamp/
+sudo tar -cpf arch-aurt-$TimeStamp.tar --exclude=arch-aurt-$TimeStamp.tar --one-file-system .
+sudo chown $USER:$USER arch-aurt-$TimeStamp.tar
+
+# Create dir change owner:group to $USER
+sudo mkdir $HOME/Container/arch-aurt-$TimeStamp/z-IMAGE
+sudo chown $USER:$USER $HOME/Container/arch-aurt-$TimeStamp/z-IMAGE
+mv $HOME/Container/arch-aurt-$TimeStamp/arch-aurt-$TimeStamp.tar  $HOME/Container/arch-aurt-$TimeStamp/z-IMAGE/arch-aurt-$TimeStamp.tar
+
+# Create *tar.lrz image in background, output to lrzip.log
+{ cd $HOME/Container/arch-aurt-$TimeStamp/z-IMAGE
+  lrzip -z arch-aurt-$TimeStamp.tar &>>lrzip.log ; } &
+
+
+echo "
+
+Currently building image in $HOME/Container/arch-aurt-$TimeStamp/
+
+:: Login as root
+:: No password 
+
+
+"
+
+# Start container
+sudo systemd-nspawn -b -D $HOME/Container/arch-aurt-$TimeStamp 
+
+echo "
+
+To restart container, Run: 
+
+sudo systemd-nspawn -b -D $HOME/Container/arch-aurt-$TimeStamp
+
+"
+

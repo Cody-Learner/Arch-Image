@@ -1,0 +1,16 @@
+As well as providing the container image for anyone to use, 
+I'm using this repo for some related scripts personal backup. 
+
+Wasn't thinking of others using anything other than the image.
+However, if you're curious and feeling adventerous.... go ahead!
+
+
+To create your own Arch container image:
+
+1) create $HOME/Container dir
+2) extract the contents of setup<version> in $HOME/Container
+3) read the aurt-img-bldr script
+4) after figuring out what it needs (deps) and it is safe to run, run it as user
+5) you'll need to figure out what and/or if I left out any details here
+6) if you want more info, contact me
+
