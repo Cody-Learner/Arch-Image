@@ -8,13 +8,13 @@
 	echo
 	echo "$IPL"|column ; echo
 
-	BGNI=$(comm -23 <((for i in $(pacman -Sqg base); do pactree -us $i;done)|sort -u|cut -d ' ' -f 1) <(pacman -Qq))
+	BGNI=$(comm -23 <((for i in $(pacman -Sqg base); do pactree -us $i;done)|sort -u|cut -d ' ' -f 1) <(pacman -Qq|sort))
 	echo -----------------------------------------------------------
 	echo "# Number of base group packages not installed and list: $(echo "$BGNI" | wc -w)"
 	echo
 	echo "$BGNI"|column ; echo
 	
-	BBGI=$(comm -13 <((for i in $(pacman -Sqg base); do pactree -us $i; done)|sort -u|cut -d ' ' -f 1) <(pacman -Qq))
+	BBGI=$(comm -13 <((for i in $(pacman -Sqg base); do pactree -us $i; done)|sort -u|cut -d ' ' -f 1) <(pacman -Qq|sort))
 	echo -----------------------------------------------------------
 	echo "# Number of non base group packages installed and list: $(echo "$BBGI" | wc -w)"
 	echo
