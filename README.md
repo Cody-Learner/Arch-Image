@@ -53,7 +53,6 @@ Image Size:
 
 [root@test ~]# slithery
 
------------------------------------------------------------
 # Number of installed packages total and list: 95
 
 acl			device-mapper		hwids			libidn			libtirpc		pcre
