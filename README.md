@@ -24,8 +24,7 @@ By default, machinectl will extract the archive and place it in /var/lib/machine
  ```$ sudo ls -l /var/lib/machines``` <br>
 
  *   *Alternatively, as of version 2018-05-13.09.18, you can run it from any user directory. Extract the .tar archive and run:* <br>
-
-  ```sudo systemd-nspawn -b ```
+      ```sudo systemd-nspawn -b ```
   
 Start the container:<br>
  ```$ sudo systemd-nspawn -b -D /path/to/image```<br>
