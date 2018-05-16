@@ -121,4 +121,3 @@ Special recomendation goes out to systemd-nspawn! If you're looking for an easy 
 
 Also want to give a shout out to Slithery on the Arch forums: https://bbs.archlinux.org/viewtopic.php?id=236622 <br>
 He offered a link to a nifty one liner he made up years ago. Need to log in for the link.... I've been using it in my images as a nice time saving tool. The package list above is part of it's output. I'll put it up here as the slithery script in the future.
-
