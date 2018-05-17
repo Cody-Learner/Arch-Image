@@ -1,9 +1,9 @@
-md5sum *
-32f61d992ee8c5340d278f39a42b80ac  arch-aurt-2018-05-16.19.52.tar.lrz
+$ md5sum *
+e6e47f711324ee9533f436c5cc49a4cf  arch-aurt-2018-05-17.08.43.tar.lrz
 674919c79c1c6352004a5a047e16e025  aurt-img-bldr
 
-1629f43af9d9a76325ef1f9778472613  lrzip.log
+c05e270abd2ed311b76c0670888520be  lrzip.log
 6bd8d6dbb0cb5ab864136c474ab1787e  README.aurt-img-bldr
-48f640ed8dd7a455e88057be470b691d  README.md
+cc7ba833bb35648e9a7ac950aa63581c  README.md
 a13b4127451d4b3135dcf706264f3ea8  setup-2018-05-13.09.18-1.tar
 67df33314319d983dc303ae95706e465  slithery
