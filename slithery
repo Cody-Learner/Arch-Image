@@ -28,7 +28,7 @@
 	echo -----------------------------------------------------------
 	echo "# Enabled systemd services:"
 	echo
-	systemctl list-unit-files | grep enabled | grep service  ; echo
+	systemctl list-unit-files --state=enabled  ; echo
 
 	echo -----------------------------------------------------------
 	echo "# Disk storage (ext4):"

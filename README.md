@@ -29,11 +29,93 @@ By default, machinectl will extract the archive and place it in /var/lib/machine
 Start the container:<br>
  ```$ sudo systemd-nspawn -b -D /path/to/image```<br>
  
-For shutdown:<br>
+For shutdown run in container:<br>
  ```$ sudo poweroff``` <br>
 
 Login to root, no password. Use instructions upon login to complete setup.<br>
 
+## May 15 2018
+Removed some packages from the image build script: nano file grep systemd-sysvcompat, to reduce the size.
+These packages will be installed upon running the 'finbld' script inside the container image. 
+
+After you boot the container image, you'll see this on initial root login only:
+```
+arch-aurt-2018-05-16 login: root
+
+=======================================================================
+ This is a stripped down Arch container image. Use as is for 
+ general testing, or modify to suite for any testing requirements.
+
+			 Run:  finbld
+ 
+ As root to set up user aurt, and prep image for aurt testing.
+
+ This message will run one time on first login.
+ To see it again, Run: /root/first-root-run
+=======================================================================
+```
+
+When finbld finishes...
+```
+:: To have a more useable system at this stage:
+
+:: Installed: expac file git grep nano sudo 
+:: Run 'slithery' for package status and info
+
+:: setup user
+:: setup sudo
+
+:: non root user : aurt
+
+:: aurt password : test
+:: root password : test
+
+:: Currently logged in as: aurt
+```
+
+...finbld 'switch user' to aurt, you'll see below on initial login only.
+
+At this stage, you could use this image for anything.
+Run the 'slithery' script for some general info.
+
+For testing aurt, run: aurt-setup-img
+```
+=======================================================================
+ To finish setup to test aurt, Run:   aurt-setup-img
+
+ This will install missing base pkgs (minus linux and deps),
+ install the current version of aurt from github:
+ https://github.com/Cody-Learner/aurt.aurutils.based
+ and configure aurt and dependencies as required.
+
+ This message will run one time on first login.
+ To see it again, Run: ~/first-aurt-run
+=======================================================================
+
+[aurt@arch-aurt-2018-05-16 root]$
+```
+
+After the 'aurt-setup-img' script finishes, you'll be looning at this:
+```
+========================================================================
+
+ Aurt setup has finished!
+
+ For a menu ............................. Run:   aurt
+ To list all installed AUR packages ..... Run:   aurt -la
+ To reinstall aurutils and cower *....... Run:   aurt -S aurutils cower repoctl
+
+ * This will install the packages with aurt so that they get 
+   properly registered and show up in the local aur repo database.
+
+ Note: Ignore the warning: 
+  ==> WARNING: No packages remain, creating empty database.
+
+ Translation: Install some AUR packages so it's not empty.
+ 
+========================================================================
+
+```
 
 arch-aurt details:<br>
 ```
