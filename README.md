@@ -24,8 +24,7 @@ By default, machinectl will extract the archive and place it in /var/lib/machine
  ```$ sudo ls -l /var/lib/machines``` <br>
 
  *   *Alternatively, as of version 2018-05-13.09.18, you can run it from any user directory. Extract the .tar archive and run:* <br>
-
-  ```sudo systemd-nspawn -b ```
+      ```sudo systemd-nspawn -b ```
   
 Start the container:<br>
  ```$ sudo systemd-nspawn -b -D /path/to/image```<br>
@@ -54,7 +53,6 @@ Image Size:
 
 [root@test ~]# slithery
 
------------------------------------------------------------
 # Number of installed packages total and list: 95
 
 acl			device-mapper		hwids			libidn			libtirpc		pcre
@@ -123,4 +121,3 @@ Special recomendation goes out to systemd-nspawn! If you're looking for an easy 
 
 Also want to give a shout out to Slithery on the Arch forums: https://bbs.archlinux.org/viewtopic.php?id=236622 <br>
 He offered a link to a nifty one liner he made up years ago. Need to log in for the link.... I've been using it in my images as a nice time saving tool. The package list above is part of it's output. I'll put it up here as the slithery script in the future.
-
