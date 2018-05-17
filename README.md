@@ -95,7 +95,7 @@ For testing aurt, run: aurt-setup-img
 [aurt@arch-aurt-2018-05-16 root]$
 ```
 
-After the 'aurt-setup-img' script finishes, you'll be looning at this:
+After the 'aurt-setup-img' script finishes, you'll see this:
 ```
 ========================================================================
 
