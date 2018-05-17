@@ -117,7 +117,11 @@ After the 'aurt-setup-img' script finishes, you'll see this:
 
 ```
 
-arch-aurt details:<br>
+
+
+
+
+Some arch-aurt image details:<br>
 ```
 ------------------------------------------------------
  Users:		Passwords:
